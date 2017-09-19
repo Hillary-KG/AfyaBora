@@ -1,1 +1,3 @@
 *.pyc
+/dahboard/*.pyc
+/afyasmart/*.pyc
