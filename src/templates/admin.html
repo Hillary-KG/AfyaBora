@@ -1,0 +1,16 @@
+{% extends "base.html"%}
+{% block content %}
+<div id="loginForm">
+	<form class="form-horizontal" action = "" method="POST">{% csrf_token %} <!-- Cross site request fodgery token --> 
+	{{form.as_p}} 
+	<fieldset>
+		<legend>Health Staff Login</legend><br>
+			<label>Email address</label><br>
+			<input class="input-medium" type="text" name="email address" placeholder="Email address"><br><br>
+			<label>Password</label><br>
+			<input class="input-medium" type="password" name="pwd" placeholder="Password"><br>
+			<input class="input-medium" type="Submit" value="Login">
+		</fieldset>
+	</form>
+</div>
+{% endblock%}
