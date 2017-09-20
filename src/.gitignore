@@ -1,10 +1,4 @@
 *.pyc
 /dashboard/*.pyc
 /afyasmart/*.pyc
-afyasmart.sublime-project
-afyasmart.sublime-workspace
-/bin
-/include
-/lib
-/local
-pip-selfcheck.json
+
