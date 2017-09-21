@@ -1,3 +1,14 @@
+<<<<<<< 6667cbd4c7119a78cdb175bc2d9d7649d570ff1f
 *.pyc
 /dahboard/*.pyc
 /afyasmart/*.pyc
+=======
+afyasmart.sublime-project
+afyasmart.sublime-workspace
+/bin/
+/include/
+/lib/
+/local/
+/pip-selfcheck.json
+
+>>>>>>> added .gitignore
