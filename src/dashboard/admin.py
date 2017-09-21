@@ -2,39 +2,32 @@ from django.contrib import admin
 
 from .models import *
 
+
 class BioData(admin.ModelAdmin):
-	pass
+	list_display = ['patient_no','first_name','sir_name','age','age']
 class NextOfKin(admin.ModelAdmin):
-	pass
+	list_display = ['sir_name','first_name','relationship']
 class MedicalData(admin.ModelAdmin):
-	pass
+	list_display = ['patient_no','date_confirmed','date_enrolled','entry_point','CD4_count','DLD']
+class Visit(admin.ModelAdmin):
+	list_display= ['patient_no','visit_date','tests_done','comments']
 class TransferIn(admin.ModelAdmin):
-	pass
-class VisitDetails(admin.ModelAdmin):
-	pass
-
-admin.site.register(Bio_data,BioData)
-admin.site.register(Next_of_kin,NextOfKin)
-admin.site.register(Medical_Data,MedicalData)
-admin.site.register(Transfer_in,TransferIn)
-admin.site.register(Visit_details,VisitDetails)
-
-# class PatientAdmin(admin.ModelAdmin):
-# 	list_display = ['first_name','sir_name','age','visiting_date','residence']
-# class DoctorAdmin(admin.ModelAdmin):
-# 	list_display = ['job_number','first_name','sir_name']
-# class Login(admin.ModelAdmin):
-# 	pass
-# class Medication(admin.ModelAdmin):
-# 	list_display = ['first_name','sir_name','start_date']
-# class StaffLogin(admin.ModelAdmin):
-# 	list_display = ['__str__','job_number']
-# class AdminLogin(admin.ModelAdmin):
-# 	list_display = ['time','email_address']
+	list_display = ['patient_no','sir_name','second_name','facility_from','date_confirmed','date_enrolled']
+class ClinicianDetails(admin.ModelAdmin):
+	list_display = ['sir_name','second_name','job_number','facility']
+class ClinicianLogin(admin.ModelAdmin):
+	list_display = ['job_number','sir_name','second_name','email_address']
+class AdminLogin(admin.ModelAdmin):
+	list_display = ['sir_name','last_name','email_address','Login_time']
 		
-# # Register your models here.
-# admin.site.register(Staff_login,StaffLogin)
-# admin.site.register(Patient,PatientAdmin)
-# admin.site.register(Health_staff,DoctorAdmin)
-# admin.site.register(Patient_medication,Medication)
-# admin.site.register(Admin_login,AdminLogin)
+# Register your models here.
+admin.site.register(Bio_data,BioData)
+admin.site.register(Next_of_Kin,NextOfKin)
+admin.site.register(Medical_data,MedicalData)
+admin.site.register(Visit_details,Visit)
+admin.site.register(Transfer_in,TransferIn)
+admin.site.register(Clinician_details,ClinicianDetails)
+admin.site.register(Clinician_login,ClinicianLogin)
+admin.site.register(Admin_login,AdminLogin)
+
+
