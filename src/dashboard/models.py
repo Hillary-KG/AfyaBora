@@ -4,7 +4,7 @@ from django.db import models
 
 # Create your models here.
 class Bio_data(models.Model):
-	patient_no = models.IntegerField(blank=False,null=False,default=001)
+	patient_no = models.IntegerField(primary_key=True,blank=False,null=False,default=001)
 	sir_name = models.CharField(null=False,blank=False,max_length=30,default='')
 	first_name = models.CharField(null=False,blank=False,max_length=30,default='')
 	second_name = models.CharField(null=False,blank=False,max_length=30,default='')

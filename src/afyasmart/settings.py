@@ -76,19 +76,14 @@ WSGI_APPLICATION = 'afyasmart.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME':'afya',
-        'USER':'hillux',
-        'PASSWORD':'hillux123',
+        'NAME':'afyabora',
+        'USER':'afyaone',
+        'PASSWORD':'afyabora123',
         'HOST':'localhost',
         'PORT':'5432',
     }
 }
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.psychopg2',
-#         'NAME': os.path.join(BASE_DIR, 'db.postgresql.psychopg2'),
-#     }
-# }
+
 
 
 # Password validation
