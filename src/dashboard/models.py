@@ -22,7 +22,8 @@ class Bio_data(models.Model):
 	class Meta:
 		ordering = ['sir_name']
 class Next_of_Kin(models.Model):
-	sir_name = models.ForeignKey(Bio_data,on_delete=models.CASCADE)
+	patient_no = models.ForeignKey(Bio_data,on_delete=models.CASCADE)
+	sir_name = models.CharField(max_length=30,blank=False,null=False)
 	first_name = models.CharField(null=False,blank=False,max_length=30,default='')
 	phone_no = models.IntegerField(null=False,blank=False)
 	relationship = models.CharField(null=False,blank=False,max_length=40,default='None')
@@ -37,7 +38,6 @@ class Medical_data(models.Model):
 	date_confirmed = models.DateField(auto_now_add = False,auto_now = False)
 	date_enrolled = models.DateField(auto_now_add = False,auto_now = False)
 	used_arv = models.CharField(blank=False,null=False,max_length=20,default='None')
-	spouse = models.CharField(null=True,blank=True,max_length=40,default='None')
 	known_allergies = models.CharField(null=True,blank=True,max_length=500)
 	entry_point = models.CharField(null=False,blank=False,max_length=30,default='None')
 	CD4_count = models.IntegerField(null=True,blank=True,default=0000) # only applies for new patients
@@ -50,10 +50,8 @@ class Medical_data(models.Model):
 		ordering=['patient_no']
 class Visit_details(models.Model):
 	patient_no = models.ForeignKey(Medical_data,blank=False,null=False,on_delete=models.CASCADE,default=001)
-	sir_name= models.CharField(blank=False,null=False,max_length=50)
-	last_name = models.CharField(blank=False,null=False,max_length=50)
 	visit_date = models.DateField(auto_now_add = False,auto_now = False)
-	refilled = models.CharField(blank=False,null=False,max_length=30)######
+	refill_info = models.CharField(blank=False,null=False,max_length=30)######
 	tests_done = models.CharField(blank=False,null=False,max_length=500)
 	comments = models.CharField(blank=False,null=False,max_length=500)
 	def __str__(self):
@@ -66,40 +64,36 @@ class Transfer_in(models.Model):
 	first_name = models.CharField(null=False,blank=False,max_length=30)
 	second_name = models.CharField(null=False,blank=False,max_length=30)
 	DOB = models.DateField(auto_now_add = False,auto_now = False)
-	date_coming = models.DateField(auto_now_add = False,auto_now = False)
-	facility_from = models.CharField(null=False,blank=False,max_length=50)
+	incoming_date = models.DateField(auto_now_add = False,auto_now = False)
+	ccc_from = models.CharField(null=False,blank=False,max_length=50)
 	date_confirmed = models.DateField(auto_now_add = False,auto_now = False)
 	date_enrolled = models.DateField(auto_now_add = False,auto_now = False)
-	date_started_ART = models.DateField(auto_now_add = False,auto_now = False)
 	def __str__(self):
 		return self.facility_from
 	class Admin:
 		pass
 	class Meta:
-		ordering = ['date_coming']
+		ordering = ['incoming_date']
 
 class Clinician_details(models.Model):
+	job_id = models.IntegerField(null=False,blank=False,primary_key=True)
 	sir_name = models.CharField(null=False,blank=False,max_length=30)
-	first_name = models.CharField(null=False,blank=False,max_length=30)
-	second_name = models.CharField(null=False,blank=False,max_length=30)
-	job_number = models.IntegerField(null=False,blank=False,primary_key=True)
+	last_name = models.CharField(null=False,blank=False,max_length=30)
 	facility = models.CharField(blank=False,null=False,max_length=100)
 	def __str__(self):
 		return self.email_address
 
 class Clinician_login(models.Model):
-	sir_name = models.CharField(null=False,blank=False,max_length=30)
-	second_name = models.CharField(null=False,blank=False,max_length=30)
+	job_id = models.IntegerField(null=False,blank=False)
 	email_address = models.EmailField(primary_key=True,null=False)
 	pswd = models.CharField(max_length=30,null=False,blank=False)
-	job_number = models.IntegerField(null=False,blank=False)
-	last_login_time = models.DateTimeField(auto_now = True)
+	login_time = models.DateTimeField(auto_now = True)
 	def __str__(self):
 		return self.email_address
 	class Admin:
 		pass
 	class Meta:
-		ordering = ['sir_name']
+		ordering = ['job_id']
 
 class Admin_login(models.Model):
 	sir_name = models.CharField(null=False,blank=False,max_length=30)
@@ -110,7 +104,21 @@ class Admin_login(models.Model):
 	"""docstring for Admin_Login"""
 	def __str__(self):
 		return self.email_address
-		
+class Secondary_condition(models.Model):
+	condition_name = models.CharField(max_length=30,null=False,blank=False)
+	date_tested = models.DateField(blank=False,null=False)
+	comments = models.CharField(max_length=500,null=True,blank=True)
+	def __str__(self):
+		return self.condition_name
+class Spouse(models.Model):
+	patient_no = models.ForeignKey(Bio_data,blank=False,null=False)
+	first_name = models.CharField(blank=False,null=False,max_length=30)
+	last_name = models.CharField(blank=False,null=False,max_length=30)
+	phone_no = models.IntegerField(blank=False,null=False)
+	status = models.CharField(max_length=30,blank=False,null=False)
+	def __str__(self):
+		return self.first_name
+
 
 ############################################################################################
 

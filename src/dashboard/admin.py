@@ -12,13 +12,15 @@ class MedicalData(admin.ModelAdmin):
 class Visit(admin.ModelAdmin):
 	list_display= ['patient_no','visit_date','tests_done','comments']
 class TransferIn(admin.ModelAdmin):
-	list_display = ['patient_no','sir_name','second_name','facility_from','date_confirmed','date_enrolled']
+	list_display = ['patient_no','sir_name','second_name','ccc_from','date_confirmed','date_enrolled']
 class ClinicianDetails(admin.ModelAdmin):
-	list_display = ['sir_name','second_name','job_number','facility']
+	list_display = ['sir_name','last_name','job_id','facility']
 class ClinicianLogin(admin.ModelAdmin):
-	list_display = ['job_number','sir_name','second_name','email_address']
+	list_display = ['job_id','email_address','login_time']
 class AdminLogin(admin.ModelAdmin):
 	list_display = ['sir_name','last_name','email_address','Login_time']
+class SpouseDetails(admin.ModelAdmin):
+	list_display = ['patient_no','first_name','last_name']
 		
 # Register your models here.
 admin.site.register(Bio_data,BioData)
@@ -29,5 +31,6 @@ admin.site.register(Transfer_in,TransferIn)
 admin.site.register(Clinician_details,ClinicianDetails)
 admin.site.register(Clinician_login,ClinicianLogin)
 admin.site.register(Admin_login,AdminLogin)
+admin.site.register(Spouse,SpouseDetails)
 
 
