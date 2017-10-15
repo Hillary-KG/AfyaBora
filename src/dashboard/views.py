@@ -8,15 +8,15 @@ def index(request):
 
 # from django.shortcuts import render_to_response
 
-# # Create your views here.
-# def login(request):
-# 	return render_to_response('login.html',locals())
-# def myAdmin(request):
-# 	return render_to_response('admin.html',locals())
-# def manage_patient(request):
-# 	return render_to_response('manage_patient.html',locals())
-# def manage_staff(request):
-# 	return render_to_response('manage_staff.html',locals())
-# def patient_medication(request):
-# 	return render_to_response('medication.html',locals())
-# 	
+# Create your views here.
+def login(request):
+	return HttpResponse('login.html',locals())
+def myAdmin(request):
+	return HttpResponse('admin.html',locals())
+def managePatient(request):
+	return HttpResponse('managePatient.html',locals())
+def manageClinician(request):
+	return HttpResponse('manageStaff.html',locals())
+def medication(request):
+	return HttpResponse('medication.html',locals())
+	
