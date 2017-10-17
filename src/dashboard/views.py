@@ -1,8 +1,17 @@
 from django.shortcuts import render
 from django.http import HttpResponse 
+from .forms import *
 
 
 # Create your views here.
+def home(request):
+	title = "Welcome"
+	login_form = LoginForm
+	context = {
+		"title":title,
+
+	}
+	return render(request,'home.html',context)
 def index(request):
 	return HttpResponse("You are now in the index page")
 
