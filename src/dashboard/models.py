@@ -38,8 +38,7 @@ class PatientBioData(models.Model):
 		ordering=['patient_no']
 
 class NextOfKin(models.Model):
-	patient_no = models.ForeignKey(PatientBioData,on_delete=models.CASCADE,primary_key=True,blank=False,null=False)
-	sir_name = models.CharField(max_length=50,blank=False,null=False)
+	sir_name = models.ForeignKey(PatientBioData,on_delete=models.CASCADE,primary_key=True,blank=False,null=False,max_length=30)
 	first_name = models.CharField(max_length=50,null=False,blank=False)
 	phone_no = models.IntegerField(null=False,blank=False)
 	relationship = models.CharField(max_length=30,null=False,blank=False)
