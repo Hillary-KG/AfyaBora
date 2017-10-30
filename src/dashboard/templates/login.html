@@ -1,0 +1,15 @@
+{%extends "base.html"%}
+
+<head>
+	{% block content %}
+	<body>
+		<h1>Welcome to smart health solutions</h1>
+			<form method="POST" action="">
+				{% csrf_token %}
+				{{ login.as_p }}
+				<input type="submit" name="login" value="login">
+			</form>
+	{% endblock %}
+	</body>
+	
+</head>

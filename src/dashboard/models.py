@@ -47,7 +47,7 @@ class NextOfKin(models.Model):
 	class Admin:
 		pass 
 	class Meta:
-		ordering=['patient_no']
+		ordering=['sir_name']
 
 class PatientMedicalData(models.Model):
 	patient_no = models.ForeignKey(PatientBioData,on_delete=models.CASCADE,primary_key=True,blank=False,null=False)
@@ -133,9 +133,9 @@ class ClinicianData(models.Model):
 	def __str__(self):
 		return str(self.job_id)
 
-class ClinicianLoginCredentials(models.Model):
-	job_id = models.IntegerField(null=False,blank=False)
-	email_address = models.ForeignKey(ClinicianData,primary_key=True,blank=False,null=False)
+class ClinicianLogin(models.Model):
+	job_id = models.ForeignKey(ClinicianData,primary_key=True,blank=False,null=False)
+	email_address = models.EmailField(blank=False,null=False)
 	password = models.CharField(max_length=100,null=False,blank=False)
 	login_time = models.DateTimeField(auto_now_add = False,auto_now = True,blank=False,null=False)
 	def __str__(self):
