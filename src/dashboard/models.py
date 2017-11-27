@@ -53,7 +53,13 @@ class PatientMedicalData(models.Model):
 	patient_no = models.ForeignKey(PatientBioData,on_delete=models.CASCADE,primary_key=True,blank=False,null=False)
 	date_confirmed = models.DateField(blank=False,null=False,auto_now_add = False,auto_now = False)
 	date_enrolled = models.DateField(blank=False,null=False,auto_now_add = False,auto_now = False)
-	used_arv = models.CharField(blank=False,null=False,max_length=20)####
+	YES = 'Yes'
+	NO = 'No'
+	ART_HISTORY_CHOICES = (
+		(YES,'YES'),
+		(NO,'NO'),
+		)
+	used_arv = models.CharField(choices=ART_HISTORY_CHOICES,default='No',max_length=5)####
 	known_allergies = models.CharField(null=True,blank=True,max_length=500)
 	entry_point = models.CharField(null=False,blank=False,max_length=30)######
 	CD4_count = models.IntegerField(null=True,blank=True) # only applies for new patients

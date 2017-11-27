@@ -7,27 +7,32 @@ from .forms import *
 def login(request):
 	title = "Welcome"
 	login_form = LoginForm()
-
 	context = {
 		"title":title,
 		"login":login_form
 	}
 	return render(request,'login.html',context)
-
-# def index(request):
-# 	return HttpResponse("You are now in the index page")
-
-# # from django.shortcuts import render_to_response
-
-# # Create your views here.
-# def login(request):
-# 	return HttpResponse('login.html',locals())
-# def myAdmin(request):
-# 	return HttpResponse('admin.html',locals())
-# def managePatient(request):
-# 	return HttpResponse('managePatient.html',locals())
-# def manageClinician(request):
-# 	return HttpResponse('manageStaff.html',locals())
-# def medication(request):
-# 	return HttpResponse('medication.html',locals())
-# 	
+def home(request):
+	context = {
+	}
+	return render(request,'home.html',context)
+def managePatient(request):
+	context = {
+	}
+	return render(request,'managePatient.html',context)
+def manageClinician(request):
+	context = {
+	}
+	return render(request,'manageClinician.html',context)
+def medicationDetails(request):
+	context = {
+	}
+	return render(request,'medication.html',context)
+def visit(request):
+	context = {
+	}
+	return render(request,'visit.html',context)
+def Admin(request):
+	context = {
+	}
+	return render(request,'admin.html',context)
