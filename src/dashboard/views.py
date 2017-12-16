@@ -4,14 +4,15 @@ from .forms import *
 
 
 # Create your views here.
-def login(request):
-	title = "Welcome"
-	login_form = LoginForm()
+def clinicianLogin(request):
+
+	# title = "Welcome"
+	# login_form = LoginForm()
 	context = {
-		"title":title,
-		"login":login_form
+		# "title":title,
+		# "login":login_form
 	}
-	return render(request,'login.html',context)
+	return render(request,'clinicianLogin.php',context)
 def home(request):
 	context = {
 	}

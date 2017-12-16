@@ -4,7 +4,7 @@ from . import views
 urlpatterns = [
 	#urls mapping the views of the application come here
 	url(r'^home/$',views.home,name ='home'),
-	url(r'^login/$',views.login,name ='login'),
+	url(r'^clinicianLogin/$',views.clinicianLogin,name ='clogin'),
 	url(r'^managePatient/$',views.managePatient,name ='managePatient'),
 	url(r'^manageClinician/$',views.manageClinician,name ='manageClinician'),
 	url(r'^visitDetails/$',views.visit,name ='visitDetails'),
