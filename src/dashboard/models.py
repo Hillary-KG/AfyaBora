@@ -38,7 +38,7 @@ class PatientBioData(models.Model):
 		ordering=['patient_no']
 
 class NextOfKin(models.Model):
-	sir_name = models.ForeignKey(PatientBioData,on_delete=models.CASCADE,primary_key=True,blank=False,null=False,max_length=30)
+	sir_name = models.OneToOneField(PatientBioData,on_delete=models.CASCADE,primary_key=True,blank=False,null=False,max_length=30)
 	first_name = models.CharField(max_length=50,null=False,blank=False)
 	phone_no = models.IntegerField(null=False,blank=False)
 	relationship = models.CharField(max_length=30,null=False,blank=False)
@@ -50,7 +50,7 @@ class NextOfKin(models.Model):
 		ordering=['sir_name']
 
 class PatientMedicalData(models.Model):
-	patient_no = models.ForeignKey(PatientBioData,on_delete=models.CASCADE,primary_key=True,blank=False,null=False)
+	patient_no = models.OneToOneField(PatientBioData,on_delete=models.CASCADE,primary_key=True,blank=False,null=False)
 	date_confirmed = models.DateField(blank=False,null=False,auto_now_add = False,auto_now = False)
 	date_enrolled = models.DateField(blank=False,null=False,auto_now_add = False,auto_now = False)
 	YES = 'Yes'
@@ -79,7 +79,7 @@ class ARTVisitDetails(models.Model):
 		(YES,'Refilled'),
 		(NO,'Not Refilled'),
 		)
-	patient_no = models.ForeignKey(PatientBioData,on_delete=models.CASCADE,primary_key=True,blank=False,null=False)
+	patient_no = models.OneToOneField(PatientBioData,on_delete=models.CASCADE,primary_key=True,blank=False,null=False)
 	visit_date = models.DateField(blank=False,null=False,auto_now_add = False,auto_now = False)
 	drug_refill = models.CharField(max_length=5,choices = DRUG_REFILLED_CHOICES,default ='Yes')######
 	tests_done = models.TextField(max_length=500,blank=False,null=False)######
@@ -119,7 +119,34 @@ class TransferInPatient(models.Model):
 		pass
 	class Meta:
 		ordering = ['patient_no']
-
+class Transit_patient(models.Model):
+	temp_no = models.CharField(max_length=5,null=False,blank=False)
+	first_name = models.CharField(max_length=30,null=False,blank=False)
+	last_name = models.CharField(max_length=30,null=False,blank=False)
+	MALE = 'M'
+	FEMALE = 'F'
+	SEX_CHOICES = (
+		(MALE,'Male'),
+		(FEMALE,'Female'),
+		)
+	Sex = models.CharField(max_length=3,choices=SEX_CHOICES,null=False,blank=False,default='')
+	MARITAL_STATUS = (
+		('MARRIED','Married'),
+		('SINGLE','Single')
+		)
+	marital_status = models.CharField(max_length=10,choices=MARITAL_STATUS,blank=False,null=False,default='')
+	visit_date = models.DateTimeField(auto_now_add = False,auto_now = True)
+	YES = 'Yes'
+	NO = 'No'
+	DRUG_REFILLED_CHOICES = (
+		(YES,'Refilled'),
+		(NO,'Not Refilled'),
+		)
+	drug_refill = models.CharField(max_length=5,choices = DRUG_REFILLED_CHOICES,default ='Yes')
+	tests_done = models.TextField(max_length=500,blank=False,null=False)######
+	comments = models.TextField(max_length=1000)
+	def __str__(self):
+		return str(self.temp_no)
 class ClinicianData(models.Model):
 	job_id = models.IntegerField(null=False,blank=False)
 	first_name = models.CharField(max_length=50,null=False,blank=False)
@@ -140,7 +167,7 @@ class ClinicianData(models.Model):
 		return str(self.job_id)
 
 class ClinicianLogin(models.Model):
-	job_id = models.ForeignKey(ClinicianData,primary_key=True,blank=False,null=False)
+	job_id = models.OneToOneField(ClinicianData,primary_key=True,blank=False,null=False)
 	email_address = models.EmailField(blank=False,null=False)
 	password = models.CharField(max_length=100,null=False,blank=False)
 	login_time = models.DateTimeField(auto_now_add = False,auto_now = True,blank=False,null=False)

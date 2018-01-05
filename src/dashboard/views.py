@@ -16,7 +16,7 @@ def clinicianLogin(request):
 def home(request):
 	context = {
 	}
-	return render(request,'home.html',context)
+	return render(request,'home.php',context)
 def managePatient(request):
 	context = {
 	}
@@ -37,3 +37,7 @@ def Admin(request):
 	context = {
 	}
 	return render(request,'admin.html',context)
+def clinicianDashboard(request):
+	context = {
+	}
+	return render(request,'clinicianDashboard.php',context)

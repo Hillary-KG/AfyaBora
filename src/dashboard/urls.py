@@ -9,5 +9,6 @@ urlpatterns = [
 	url(r'^manageClinician/$',views.manageClinician,name ='manageClinician'),
 	url(r'^visitDetails/$',views.visit,name ='visitDetails'),
 	url(r'^medicationDetails/$',views.medicationDetails,name ='medicationDetails'),
+	url(r'^dashboard/$',views.clinicianDashboard,name ='clinician_dashbd'),
 	url(r'^Admin/$',views.Admin,name ='admin'),
 ]

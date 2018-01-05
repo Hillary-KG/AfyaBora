@@ -19,6 +19,8 @@ class Clinician_Login(admin.ModelAdmin):
 	list_display = ['job_id','login_time']
 class AdminLogin(admin.ModelAdmin):
 	list_display = ['first_name','last_name','email_address','login_time']
+class TransitPatient(admin.ModelAdmin):
+	list_display=['temp_no','first_name','last_name','visit_date','drug_refill']
 # class SpouseDetails(admin.ModelAdmin):
 # 	list_display = ['patient_no','first_name','last_name']
 		
@@ -31,6 +33,7 @@ admin.site.register(TransferInPatient,TransferIn)
 admin.site.register(ClinicianData,ClinicianDetails)
 admin.site.register(ClinicianLogin,Clinician_Login)
 admin.site.register(AdminLoginCredentials,AdminLogin)
+admin.site.register(Transit_patient,TransitPatient)
 #admin.site.register(Spouse,SpouseDetails)
 
 
