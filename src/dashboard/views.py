@@ -25,10 +25,10 @@ def manageClinician(request):
 	context = {
 	}
 	return render(request,'manageClinician.html',context)
-def medicationDetails(request):
+def patientMadicalInfo(request):
 	context = {
 	}
-	return render(request,'medication.html',context)
+	return render(request,'patientMedicalInfo.html',context)
 def visit(request):
 	context = {
 	}
