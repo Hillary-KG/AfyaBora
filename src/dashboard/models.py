@@ -169,6 +169,7 @@ class ClinicianData(models.Model):
 class ClinicianLogin(models.Model):
 	job_id = models.OneToOneField(ClinicianData,primary_key=True,blank=False,null=False)
 	email_address = models.EmailField(blank=False,null=False)
+	user_name = models.CharField(max_length=10,null=False,blank=False)
 	password = models.CharField(max_length=100,null=False,blank=False)
 	login_time = models.DateTimeField(auto_now_add = False,auto_now = True,blank=False,null=False)
 	def __str__(self):
