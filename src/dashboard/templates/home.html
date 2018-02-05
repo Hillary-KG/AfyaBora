@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<body>
+	{% if user.is_authenticated %}
+	<p>Welcome {{ user.username }}</p>
+	<div class="home_options">
+			<p><a href="/dashboard/managePatient">Manage Patient</a></p>
+			<p><a href="">Information and resources</a></p>
+			<p><a href="/dashboard/logout/">logout</a></p>
+	</div>
+	{% endif %}
+</body>
+{% endblock %}

@@ -15,8 +15,10 @@ Including another URLconf
 """
 from django.conf.urls import include,url
 from django.contrib import admin
+from dashboard import views
 
 urlpatterns = [
 	url(r'^dashboard/',include('dashboard.urls')),
     url(r'^admin/', admin.site.urls),
+    url(r'^',views.home_view,name='ART_Home')
 ]

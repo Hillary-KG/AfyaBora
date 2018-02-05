@@ -5,15 +5,12 @@
 <!-- Custom -->
 <!-- <link rel="stylesheet" href="css/custom.css"> -->
 
-<div class="container">
+<div class="container" id="login-form">
     
 <!-- Login Form -->
 
-<form  action="index.php" name="loginform" class="form-login" method="post">
-	<div class="imgcontainer">
-	    <img src="img_avatar2.png" alt="Avatar" class="avatar">
-	 </div>
-	    
+<form action="" name="loginform" class="form-login" method="post">
+	{% csrf_token %}   
 	<div class="form-group">
 	    <div class="cnt"><h3>Clinician login</h3></div>
 	    <label for="username">Username:</label>
@@ -45,8 +42,8 @@
 </div>
 <!-- End div -->
 
-<?php if(!empty(@$_SESSION['user_id'])): ?>
+<!-- <?php if(!empty(@$_SESSION['user_id'])): ?>
 <div class="cnt"><a href="#">Dont have an account? Create one</a></div>
-<?php endif; ?>
+<?php endif; ?> -->
 
 {% endblock %}	

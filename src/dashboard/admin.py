@@ -5,6 +5,8 @@ from .models import *
 
 class BioData(admin.ModelAdmin):
 	list_display = ['patient_no','first_name','sir_name']
+	search_fields = ['patient_no','first_name','sir_name']
+	list_filter = ['date_created','date_updated']
 class Next_of_Kin(admin.ModelAdmin):
 	list_display = ['sir_name','first_name','relationship']
 class MedicalData(admin.ModelAdmin):

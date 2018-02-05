@@ -4,6 +4,10 @@ from .forms import *
 
 
 # Create your views here.
+def home_view(request):
+	context={
+	}
+	return render(request,'ART_home.html',context);
 def clinicianLogin(request):
 
 	# title = "Welcome"
@@ -16,7 +20,7 @@ def clinicianLogin(request):
 def home(request):
 	context = {
 	}
-	return render(request,'home.php',context)
+	return render(request,'home.html',context)
 def managePatient(request):
 	context = {
 	}
@@ -40,4 +44,9 @@ def Admin(request):
 def clinicianDashboard(request):
 	context = {
 	}
-	return render(request,'clinicianDashboard.php',context)
+	return render(request,'clinicianDashboard.html',context)
+def index(request):
+	context={
+
+	}
+	return render(request,'index.php',context)

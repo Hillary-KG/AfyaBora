@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<body>
+	{% if user.is_authenticated %}
+	<p>Welcome {{ user.username }}</p>
+	{% endif %}
+	<p><a href="">manage Patient</a></p>
+		<p><a href="">View/Edit patient medical information</a></p><br>
+		<p><a href="">View/Edit patient ART visit record</a></p><br>
+		<p><a href="">View/Edit patient bio information</a></p><br><br>
+		<p><a href="">Register patient</a></p><br>
+		<p><a href="">Register transit Patient</a></p><br>
+		<p><a href="">Register a transfer-in Patient</a></p><br>
+		<p><a href="">Delete patient</a></p><br>
+	<button class="btn btn-default" type="submit"><a href="">Logout</a></button>
+</body>
+{% endblock %}

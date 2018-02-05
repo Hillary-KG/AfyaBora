@@ -2,6 +2,8 @@ from __future__ import unicode_literals
 
 from django.db import models
 import datetime
+from django.core.exceptions import ValidationError
+from django.core.validators import RegexValidator
 #import datetime
 
 # Create your models here.
@@ -24,7 +26,16 @@ class PatientBioData(models.Model):
 		('SINGLE','Single')
 		)
 	marital_status = models.CharField(max_length=10,choices=MARITAL_STATUS,blank=False,null=False,default='')
-	phone_no = models.IntegerField(null=False,blank=False)
+	phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$', message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.")
+	phone_no = models.CharField(validators=[phone_regex], max_length=17, blank=True) # validators should be a list
+	# phone_no = models.IntegerField(null=False,blank=False)
+	#validating the phone number
+	# def clean(self):
+	# 	phone_no=str(self.phone_no)
+	# 	if not phone_no.startswith('+254') or not phone_no.startswith('07'):
+	# 		raise ValidationError("Enter a valid phone number")
+
+	# 	pass
 	NoK = models.CharField(max_length=50,null=True,blank=True,default=None)####
 	physical_address = models.CharField(max_length=60,null=False,blank=False)
 	date_created = models.DateTimeField(auto_now_add=True,auto_now=False)

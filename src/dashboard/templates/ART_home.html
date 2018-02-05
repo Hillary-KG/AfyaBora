@@ -1,0 +1,17 @@
+
+{% extends "base.html" %}
+<head>
+	{% block title %}<title> ART | Home </title>{% endblock %}
+	<h2>Welcome to ART home</h2>
+</head>
+{% block content %}
+<body>
+	<div id="login-choices">
+		<h3>Login as:</h3>
+			<ul>
+				<a href="/dashboard/login/">Clinician</a><br>
+				<a href="/admin/login/?next=/admin/">Admin</a>
+			</ul>
+	</div>
+</body>
+{% endblock %}

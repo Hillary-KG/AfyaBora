@@ -1,0 +1,31 @@
+body{
+	background-image: url();
+	background-color: #678c73;
+	align-content: center;
+}
+
+body.login-form{
+	width: 50%;
+    margin: 0;
+    align-self: center;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    padding: 0;
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-bottom: 20px;
+    padding-left: 80px;" 
+}
+form {
+    margin: 0;
+    padding: 0;
+}
+
+fieldset {
+    margin: 0;
+    padding: 0;
+    border: none;
+    border-top: 1px solid #eee;
+}

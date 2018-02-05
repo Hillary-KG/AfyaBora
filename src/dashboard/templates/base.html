@@ -3,8 +3,10 @@
 
 <!DOCTYPE html>
 <html>
+{%block head %}
 <head>
-<title>ART Bora</title>
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	{% block title %}<title>ART Bora</title>{% endblock %}
 	<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,17 +15,18 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<h2>Welcome to ART bora </h2>
 </head>
+{% endblock %}
 {% block content %}
-<body>
-	<h1>Afya Smart</h1>
+<body class="base_body">
 	<div class="container">
+		<h1>Afya Smart</h1>
 		<div class="row" style="background-image: ">
 		</div>	
 	</div>
 </body>
 {% endblock %}
 {% block footer %}
-		<div class="footer">
+		<div class="footer" id="base_footer">
 			<footer style="text-align: center;">@ART Bora 2017</footer>
 		</div>
 	{% endblock %}
