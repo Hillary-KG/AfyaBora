@@ -1,18 +1,33 @@
 {% extends 'base.html' %}
-{% block head %}{% endblock %}
-{% block content %}
-<body>
+{% block body-content %}
 	{% if registered %}
 		<a href="/dashboard/">ART</a>says: thank you for registering
 	{% else %}
-		ART says: register new clinician here 
+		Register new clinician here 
 		<form id="clinician_form" method="POST" action="/dashboard/register/" enctype="multipart/form-data">
 			{% csrf_token %}
-			{{ clinician_form.as_p }}
-			{{ profile_form.as_p }}
-			<input type="submit" name="submit" value="submit">
+			{% for error in clinician_form.non_field_errors %}
+			<div class="form-group has-errors text-danger small">
+				{{error}}
+			</div>
+			{% endfor %}
+			{% for field in clinician_form %}
+			<div class="form-group has-errors text-danger small">
+				{{field.errors}}
+			</div>
+			<div class="form-group has-errors text-danger small">
+			</div>
+			<div class="form-group">
+				{{field}}
+			</div>
+			{% endfor %}
+			<button class="btn btn-primary" style="width: 100%">Submit</button>
+			<!-- <div class="form-group col-md-6">
+				{{ profile_form.as_p }}
+			</div>
+			
+			<input type="submit" name="submit" value="submit"> --	>
 		</form>
 	{% endif %}
-</body>
 {% endblock %}
 {% block footer %} {% endblock %}

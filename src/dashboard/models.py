@@ -212,9 +212,11 @@ class ClinicianProfileForm(ModelForm):
 
 #ussd model to hold the session details
 class session_levels(models.Model):
-	session_id = models.CharField(max_length=25,primary_key=True)
+	session_id = models.CharField(max_length=40,primary_key=True)
 	phonenumber= models.CharField(max_length=25,null=True)
 	level = models.IntegerField(null=True) 
+	p_id = models.CharField(max_length=25,null=True)
+	P_phone = models.CharField(max_length=25,null=True)
 
 class AdminLoginCredentials(models.Model):
 	email_address = models.EmailField(primary_key=True,null=False,blank=False)
@@ -243,6 +245,5 @@ class SecondaryCondition(models.Model):
 
 
 ############################################################################################
-
-
-	
+class Tester(models.Model):
+	trial = models.IntegerField()

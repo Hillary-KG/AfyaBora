@@ -46,6 +46,7 @@ admin.site.register(TransferInPatient,TransferIn)
 admin.site.register(AdminLoginCredentials,AdminLogin)
 admin.site.register(Transit_patient,TransitPatient)
 admin.site.register(ClinicianProfile,Clinician)
+admin.site.register(Tester)
 #admin.site.register(Spouse,SpouseDetails)
 
 
