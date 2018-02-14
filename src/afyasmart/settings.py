@@ -25,7 +25,7 @@ SECRET_KEY = 'gn6#kk@uzm*m9m7q@pdvaob#f+t2-ck&19je&cm-fpon5a3304'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     #'dashboard',
+    #'bootstrap_ui',
 ]
 
 MIDDLEWARE = [
@@ -126,4 +127,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-LOGIN_REDIRECT_URL = '/dashboard/home/'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+#LOGIN_REDIRECT_URL = '/dashboard/home/'

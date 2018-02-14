@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block head %}{% endblock %}
+{% block content %}
+<body>
+	{% if registered %}
+		<a href="/dashboard/">ART</a>says: thank you for registering
+	{% else %}
+		ART says: register new clinician here 
+		<form id="clinician_form" method="POST" action="/dashboard/register/" enctype="multipart/form-data">
+			{% csrf_token %}
+			{{ clinician_form.as_p }}
+			{{ profile_form.as_p }}
+			<input type="submit" name="submit" value="submit">
+		</form>
+	{% endif %}
+</body>
+{% endblock %}
+{% block footer %} {% endblock %}

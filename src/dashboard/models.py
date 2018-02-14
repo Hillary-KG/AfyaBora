@@ -4,11 +4,14 @@ from django.db import models
 import datetime
 from django.core.exceptions import ValidationError
 from django.core.validators import RegexValidator
+from django.contrib.auth.models import User
+from django.forms import ModelForm
 #import datetime
 
 # Create your models here.
 class PatientBioData(models.Model):
 	patient_no = models.IntegerField(primary_key=True,blank=False,null=False)
+	id_no = models.CharField(max_length=10,blank=False,null=False)
 	sir_name = models.CharField(max_length=50,null=False,blank=False)
 	first_name = models.CharField(max_length=50,null=False,blank=False)
 	last_name = models.CharField(max_length=50,null=False,blank=False)
@@ -51,7 +54,9 @@ class PatientBioData(models.Model):
 class NextOfKin(models.Model):
 	sir_name = models.OneToOneField(PatientBioData,on_delete=models.CASCADE,primary_key=True,blank=False,null=False,max_length=30)
 	first_name = models.CharField(max_length=50,null=False,blank=False)
-	phone_no = models.IntegerField(null=False,blank=False)
+	phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$', message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.")
+	phone_no = models.CharField(validators=[phone_regex], max_length=17, blank=True) # validators should be a list
+	#phone_no = models.IntegerField(null=False,blank=False)
 	relationship = models.CharField(max_length=30,null=False,blank=False)
 	def __str__(self):
 		return str(self.sir_name)
@@ -158,12 +163,18 @@ class Transit_patient(models.Model):
 	comments = models.TextField(max_length=1000)
 	def __str__(self):
 		return str(self.temp_no)
-class ClinicianData(models.Model):
+class ClinicianProfile(models.Model):
+	clinician = models.OneToOneField(User,related_name='profile')
 	job_id = models.IntegerField(null=False,blank=False)
 	first_name = models.CharField(max_length=50,null=False,blank=False)
 	last_name = models.CharField(max_length=50,null=False,blank=False)
 	email_address = models.EmailField(primary_key=True,blank=False,null=False)
-	phone_no = models.IntegerField(blank=False,null=False)
+	# first_name = get_full_name().split(" ")[0]
+	# last_name = get_full_name(clinician).split(" ")[1]
+	login_time = models.DateTimeField(auto_now_add = False,auto_now = True,blank=False,null=False)
+	phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$', message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.")
+	phone_no = models.CharField(validators=[phone_regex], max_length=17, blank=True) # validators should be a list
+	#phone_no = models.IntegerField(blank=False,null=False)
 	CLINICAL_OFFICER = 'CO'
 	DOCTOR = 'Dr.'
 	NURSE = 'Nurse'
@@ -174,20 +185,36 @@ class ClinicianData(models.Model):
 		)
 	status = models.CharField(max_length=5,choices=STAFF_STATUS,blank=False,null=False,default='')
 	facility = models.CharField(max_length=100,blank=False,null=False)
+	level = models.IntegerField(null=True)
+	# picture = models.ImageField(upload_to='media/%Y/%m/%d',blank=True)
 	def __str__(self):
 		return str(self.job_id)
-
-class ClinicianLogin(models.Model):
-	job_id = models.OneToOneField(ClinicianData,primary_key=True,blank=False,null=False)
-	email_address = models.EmailField(blank=False,null=False)
-	user_name = models.CharField(max_length=10,null=False,blank=False)
-	password = models.CharField(max_length=100,null=False,blank=False)
-	login_time = models.DateTimeField(auto_now_add = False,auto_now = True,blank=False,null=False)
-	def __str__(self):
-		return str(self.email_address)
-		
+class ClinicianForm(ModelForm):
 	class Meta:
-		ordering = ['email_address']
+		model = User
+		fields = ['username','email','password']
+class ClinicianProfileForm(ModelForm):
+	class Meta:
+		model = ClinicianProfile
+		fields = ['job_id','first_name','last_name','status','phone_no','facility']
+
+# class ClinicianLogin(models.Model):
+# 	job_id = models.OneToOneField(ClinicianData,primary_key=True,blank=False,null=False)
+# 	email_address = models.EmailField(blank=False,null=False)
+# 	user_name = models.CharField(max_length=10,null=False,blank=False)
+# 	password = models.CharField(max_length=100,null=False,blank=False)
+# 	login_time = models.DateTimeField(auto_now_add = False,auto_now = True,blank=False,null=False)
+# 	def __str__(self):
+# 		return str(self.email_address)
+		
+# 	class Meta:
+# 		ordering = ['email_address']
+
+#ussd model to hold the session details
+class session_levels(models.Model):
+	session_id = models.CharField(max_length=25,primary_key=True)
+	phonenumber= models.CharField(max_length=25,null=True)
+	level = models.IntegerField(null=True) 
 
 class AdminLoginCredentials(models.Model):
 	email_address = models.EmailField(primary_key=True,null=False,blank=False)
