@@ -1,6 +1,7 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
-	<head>
+	<head class="header">
 		{% block header %}
 			{% block head-meta %}
 				<meta charset="utf-8">
@@ -25,16 +26,17 @@
 						position: relative;
 						width: 100%;
 						min-width: 980px;
-						padding: 0;
+						padding: 0 15px;
 				    } 
 				    .navbar {
-				    	margin-right: 0;
-				    	margin-left: 0;
-						margin-bottom: 0;
+						right: 0;
+						left: 0;
+				    	padding-top: 0;
+				    	padding-bottom: 0;
 						background-color:#414c43;
 						color: #f5dd5d;
-						padding-top: 4rem 0;
 						font-size: 130%;
+						height: 100%;
 						width: 100%;
 						border: 0;
 				    }
@@ -56,17 +58,18 @@
 				    }
 				    
 				    .footer {
-				    	position: relative;
+				    	position: absolute;
+				    	bottom: 0;
+				    	width: 100%;
+				    	height: 60px;
+				    	line-height: 60px;
 						margin-top: -150px; /* negative value of footer height */
-						height: 150px;
-						clear:both;
 
 				    	background-color:#a7ada4;
 				    	color: white;
 				    	padding: 10px;
-				    	font-size: 20px;
+				    	font-size: 100%;
 				    	text-align: center;
-				    	line-height: 60px;
 				    }
 				    .footer > .container {
 					    padding-right: 15px;
@@ -86,16 +89,11 @@
 				  
 				</style>
 			{% endblock %}
-		{% endblock %}
-	</head>
-<body>
-	<div class="container">
-		<div id="header">
 			<nav class="navbar navbar-inverse">
 			{% block navbar %}
 			  <div class="container-fluid">
 			    <div class="navbar-header">
-			      <a class="navbar-brand" href="/dashboard/home/"><img src="apple.jpeg" border="0" alt="ART Bora" width="100" height="100"></a>
+			      <a href="/dashboard/home/"><img src="{% static 'images/doc.png' %}" class="img-circle" border="0" alt="ART Bora" width="30" height="30" ></a>
 			    </div>
 			    <div class="collapse navbar-collapse" id="myNavbar">
 			      <ul class="nav navbar-nav">
@@ -113,8 +111,10 @@
 			  </div>
 			{% endblock %}
 		</nav>
-		</div>
-		
+		{% endblock %}
+	</head>
+<body>
+	<div class="container">
 		<div class="container col-sm-6">
 			{% block welcome %}{% endblock %}
 			<div class="container" >
@@ -123,13 +123,13 @@
 		    </div>  
 		</div>
 	</div>
-</body>
+	<hr>
 <footer class="footer">
 	<div class="container">
 		<span class="text-muted">
-			<p>| <a href="/dashboard/home/"> Home </a>|<a href="/dashboard/info/"> Information Resources </a>|</p>
-		<p style="font-size: 20px;">|  © ART Bora 2017 |</p>
+			<p>| <a href="/dashboard/home/"> Home </a>|<a href="/dashboard/info/"> Information Resources </a>|<br>|  © ART Bora 2017 |</p>
 		</span>
 	</div>
 </footer>
+</body>
 </html>

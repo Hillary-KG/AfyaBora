@@ -15,7 +15,7 @@ class MedicalData(admin.ModelAdmin):
 	search_fields = ['patient_no']
 class Visit(admin.ModelAdmin):
 	list_display= ['patient_no','visit_date','tests_done','comments']
-	search_fields = ['patient_no']
+	search_fields = ['patient_no','visit_datel.']
 class TransferIn(admin.ModelAdmin):
 	list_display = ['patient_no','first_name','last_name','ccc_from','date_confirmed','date_enrolled']
 	search_fields = ['patient_no','first_name','last_name']

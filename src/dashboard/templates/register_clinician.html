@@ -1,33 +1,47 @@
 {% extends 'base.html' %}
 {% block body-content %}
+<div class="container col-md-6" style="padding-left: 30%; padding-top: 3%;">
 	{% if registered %}
 		<a href="/dashboard/">ART</a>says: thank you for registering
 	{% else %}
 		Register new clinician here 
+		<hr>
 		<form id="clinician_form" method="POST" action="/dashboard/register/" enctype="multipart/form-data">
 			{% csrf_token %}
+			{% for field in profile_form %}
+				<div class="form-group has-errors text-danger small">
+					{{field.errors}}
+				</div>
+				<div class="form-group has-errors text-danger small">
+				</div>
+				<div class="form-group">
+					{{ field.label_tag }}
+					{{field}}
+				</div>
+			{% endfor %}
 			{% for error in clinician_form.non_field_errors %}
 			<div class="form-group has-errors text-danger small">
 				{{error}}
 			</div>
 			{% endfor %}
-			{% for field in clinician_form %}
-			<div class="form-group has-errors text-danger small">
-				{{field.errors}}
-			</div>
-			<div class="form-group has-errors text-danger small">
-			</div>
-			<div class="form-group">
-				{{field}}
-			</div>
+			{% for field in clinician_form %} 
+				<div class="form-group has-errors text-danger small">
+					{{field.errors}}
+				</div>
+				<div class="form-group has-errors text-danger small">
+				</div>
+				<div class="form-group">
+					{{ field.label_tag }}
+					{{field}}
+				</div>
 			{% endfor %}
-			<button class="btn btn-primary" style="width: 100%">Submit</button>
+			
 			<!-- <div class="form-group col-md-6">
 				{{ profile_form.as_p }}
-			</div>
+			</div> -->
 			
-			<input type="submit" name="submit" value="submit"> --	>
+			<input type="submit" name="submit" value="submit">
 		</form>
 	{% endif %}
+</div>	
 {% endblock %}
-{% block footer %} {% endblock %}

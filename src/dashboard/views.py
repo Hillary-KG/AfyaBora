@@ -41,12 +41,21 @@ def callback(request):
 				session_level = None
 		except Exception as e:
 			session_level=None
-
 		try:
 			session_level = session_levels.objects.get(session_id=sessionId)
+			userResponse = int(userResponse)
 			if session_level.level == 1:
-				if userResponse == PatientBioData.objects.get(id_no=userResponse) or userResponse == PatientBioData.objects.get(phone_no=userResponse):
-					patientName = PatientBioData.objects.get(id_no=userResponse).first_name
+				patient=getResponse(userResponse)
+				patient_id = patient.patient_no
+				# print(type(userResponse))
+				# id_num = userResponse
+				# try:
+				# 	print(userResponse)
+				# 	patient = PatientBioData.objects.get(patient_no=id_num)
+				# except patient.DoesNotExist:
+				# 	patient = None
+				if patient_id == True:
+					patientName = patient.first_name
 					response = "CON Select "+patientName+"'s"+" information to access\n"
 					response += "1. visit details\n"
 					response += "2. CD4 count.\n"
@@ -99,6 +108,13 @@ def callback(request):
 	else:
 		response = "END An Error occurred\n"
 	return HttpResponse(response,content_type="text/plain")
+
+def getResponse(user_response):
+	try:
+		patient = PatientBioData.objects.get(patient_no=user_response)
+	except patient.DoesNotExist:
+		patient = None
+	return patient
 
 # @csrf_exempt
 # def callback(request):
